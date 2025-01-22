@@ -1,5 +1,5 @@
 ---
-title: "index"
+title: "Home"
 author: "Nick Maurizi"
 date: "2025-01-22"
 output:
@@ -11,3 +11,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Welcome to my website
+
+`Navigate to the homework tab to see my submissions`

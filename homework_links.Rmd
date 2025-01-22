@@ -9,5 +9,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-[homework 1](homework1.html)
+###Here are my homework assignments:
+
+- [homework 1](homework1.html)
+- [homework 2](homework2.html)
+
+
 
