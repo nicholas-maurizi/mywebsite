@@ -1,15 +1,17 @@
 ---
-title: "homework_links"
+title: "Homework"
 author: "Nick Maurizi"
 date: "2025-01-22"
-output: html_document
+output:
+  html_document:
+    theme: cosmo
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-###Here are my homework assignments:
+### Here are my homework assignments:
 
 - [homework 1](homework1.html)
 - [homework 2](homework2.html)
