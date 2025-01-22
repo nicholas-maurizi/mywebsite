@@ -1,0 +1,13 @@
+---
+title: "homework_links"
+author: "Nick Maurizi"
+date: "2025-01-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+[homework 1](homework1.html)
+
