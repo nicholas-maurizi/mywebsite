@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Nick Maurizi" />
+
+<meta name="date" content="2025-01-29" />
+
+<title>Homework3</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="homework_links.html">Homework</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework3</h1>
+<h4 class="author">Nick Maurizi</h4>
+<h4 class="date">2025-01-29</h4>
+
+</div>
+
+
+<p>##Regular Expression Practice</p>
+<ol style="list-style-type: decimal">
+<li><p>Search: <code>\s{2, }</code> and replace with <code>,</code> -
+This finds two or more spaces which meets the criteria of the spaces
+between our pieces of data, but does not find the spaces between words
+within one piece of data</p></li>
+<li><p>Search: <code>(\w+), (\w+), (.+)</code> and replace with
+<code>\2 \1 (\3)</code> - this finds the first word (last name) and
+captures it. Then does not capture the comma and space, captures the
+second word (first name) and then does not capture the following comma
+and space. Finally the (.+) captures everything else until the line
+break (institution name). The replace phrase simply reorders the words
+and replaces commas with just spaces.</p></li>
+<li><p>To arrange the items in a list I searched: <code>mp3( |\n)</code>
+and replaced with <code>mp3\1\n</code> - Since we know each line ends
+with mp3 I chose to search for that and the space that follows. Since
+the last item does not have a space after I added an or line break
+option. I captured the space or line break because the or function
+didn’t seem to work without it. I replaced the captured part with a line
+break and just wrote in mp3 to keep that part. I could have used a
+capture to keep the mp3 as well but it’s only three letters so no
+biggie.</p></li>
+<li><p>To reorder each song name I searched:
+<code>(\d{4}) (.+(?=\.))(.+)</code> and replaced with
+<code>\2_\1\3</code> - This first captured the four digit number. It
+next captured everything following the space followed by a period, which
+was the title until the .mp3. Finally I used (.+) again to capture the
+rest of the line. I replaced the captures in the order desired and only
+added _ between the name and number.</p></li>
+<li><p>Search: <code>(\w)\w+,(\w+,).+(?=,),(\d+)</code> and replace with
+<code>\1_\2\3</code> - This captures the first letter of the word by
+specifying that it is one character followed by one or more characters
+and a comma. Next it captures one or more characters followed by a
+comma. I used .+(?=,) to capture everything after that up until the
+comma, then I captured the last number by looking for one or more
+digits. I replaced my three captures in order with _ seperating the
+genus first letter and species name.</p></li>
+<li><p>For this one I slightly modified my search from the previous
+statement to be: <code>(\w)\w+,(\w{4})\w+,.+(?=,),(\d+)</code> and
+changed the replace to be <code>\1_\2,\3</code> - I changed the second
+capture to be four word characters instead of any followed by a comma. I
+then made sure the rest of the word and the comma were searched for and
+replaced them with a single comma in the replace statement.</p></li>
+<li><p>For this one I largely rewrote my search query to be:
+<code>(\w{3})\w+,(\w{3})\w+,(.+(?=,)),(.+)</code> and replaced with
+<code>\1\2, \4, \3</code> - This captures the first three characters but
+not the rest that are followed by a comma. Then it does the same thing
+to the next word (I am not sure if I could have just typed this in once
+or not). Then I used ,(.+(?=,)) to capture everything after that comma
+up until the next comma. After the comma i used .+ again to capture the
+last number. I alternatively could have used here. I replaced the
+captures in order with the commas as requested except for switching the
+numbers around (3 and 4).</p></li>
+<li><p>Cleaning bee data:</p></li>
+</ol>
+<ul>
+<li>I started by finding all the commas and replacing with a comma and
+three spaces to make it easier to visualize</li>
+<li>Secondly I ran this search: <code>[^,/.a-zA-Z\d\s]</code> which
+excludes all the things I want to keep but gets rid of teh weird</li>
+<li>Next I worked out the NA’s which have decimals as pathogen laods.
+These should be 1’s. I ran this search to identify all the NA’s which
+have a decimal in the same line as them: <code>NA,(.+\d+\.\d+\n)</code>
+I replaced with <code>1,\1</code>.</li>
+<li>To fix the NA’s that should be 0’s I simply searched
+<code>NA,</code> and replaced with <code>0,</code>.</li>
+<li>To fix the extra spaces after caste labels I searched
+<code>(worker|male)\s+,</code> and replaced with <code>\1,</code>.</li>
+</ul>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

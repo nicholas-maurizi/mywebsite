@@ -1,0 +1,41 @@
+---
+title: "Homework3"
+author: "Nick Maurizi"
+date: "2025-01-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Regular Expression Practice
+
+1. Search: `\s{2, }` and replace with `,` - This finds two or more spaces which meets the criteria of the spaces between our pieces of data, but does not find the spaces between words within one piece of data
+
+2. Search: `(\w+), (\w+), (.+)` and replace with `\2 \1 (\3)` - this finds the first word (last name) and captures it. Then does not capture the comma and space, captures the second word (first name) and then does not capture the following comma and space. Finally the (.+) captures everything else until the line break (institution name). The replace phrase simply reorders the words and replaces commas with just spaces. 
+
+3. To arrange the items in a list I searched: `mp3( |\n)` and replaced with `mp3\1\n` - Since we know each line ends with mp3 I chose to search for that and the space that follows. Since the last item does not have a space after I added an or line break option. I captured the space or line break because the or function didn't seem to work without it. I replaced the captured part with a line break and just wrote in mp3 to keep that part. I could have used a capture to keep the mp3 as well but it's only three letters so no biggie.
+  
+4. To reorder each song name I searched: `(\d{4}) (.+(?=\.))(.+)` and replaced with `\2_\1\3` - This first captured the four digit number. It next captured everything following the space followed by a period, which was the title until the .mp3. Finally I used (.+) again to capture the rest of the line. I replaced the captures in the order desired and only added _ between the name and number.
+
+5. Search: `(\w)\w+,(\w+,).+(?=,),(\d+)` and replace with `\1_\2\3` - This captures the first letter of the word by specifying that it is one character followed by one or more characters and a comma. Next it captures one or more characters followed by a comma. I used .+(?=,) to capture everything after that up until the comma, then I captured the last number by looking for one or more digits. I replaced my three captures in order with _ seperating the genus first letter and species name.
+
+6. For this one I slightly modified my search from the previous statement to be: `(\w)\w+,(\w{4})\w+,.+(?=,),(\d+)` and changed the replace to be `\1_\2,\3` - I changed the second capture to be four word characters instead of any followed by a comma. I then made sure the rest of the word and the comma were searched for and replaced them with a single comma in the replace statement.
+
+7. For this one I largely rewrote my search query to be: `(\w{3})\w+,(\w{3})\w+,(.+(?=,)),(.+)` and replaced with `\1\2, \4, \3` - This captures the first three characters but not the rest that are followed by a comma. Then it does the same thing to the next word (I am not sure if I could have just typed this in once or not). Then I used ,(.+(?=,)) to capture everything after that comma up until the next comma. After the comma i used .+ again to capture the last number. I alternatively could have used \d+ here. I replaced the captures in order with the commas as requested except for switching the numbers around (3 and 4). 
+
+8. Cleaning bee data:
+  - I started by finding all the commas and replacing with a comma and three spaces to make it easier to visualize
+  - Secondly I ran this search: `[^,/.a-zA-Z\d\s]` which excludes all the things I want to keep but gets rid of teh weird 
+  - Next I worked out the NA's which have decimals as pathogen laods. These should be 1's. I ran this search to identify all the NA's which have a decimal in the same line as them: `NA,(.+\d+\.\d+\n)` I replaced with `1,\1`. 
+  - To fix the NA's that should be 0's I simply searched `NA,` and replaced with `0,`. 
+  - To fix the extra spaces after caste labels I searched `(worker|male)\s+,` and replaced with `\1,`.
+  
+  
+  
+  
+  
+  
+  
+  
