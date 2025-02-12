@@ -17,5 +17,6 @@ knitr::opts_chunk$set(echo = TRUE)
 - [homework 2](homework2.html)
 - [homework 3](homework3.html)
 - [homework 4](homework4.html)
+- [homework 5](homework5.html)
 
 
