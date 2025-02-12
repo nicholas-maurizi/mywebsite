@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Nick Maurizi" />
+
+<meta name="date" content="2025-02-12" />
+
+<title>homework5</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="homework_links.html">Homework</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">homework5</h1>
+<h4 class="author">Nick Maurizi</h4>
+<h4 class="date">2025-02-12</h4>
+
+</div>
+
+
+<div id="homework-5" class="section level2">
+<h2>Homework 5</h2>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>n_dims &lt;- sample(3:10,1,replace=TRUE)
+
+vec1 &lt;- seq(1:n_dims^2)
+
+sample(x=vec1)</code></pre>
+<pre><code>##  [1] 31 29 36  2 34 19  7  6 20 14 32 22 49 17 26 40  3 24  5 48 30 23 41  9 18
+## [26]  1 11 25 27 43  4 39 15 37 10 44 16  8 33 13 45 12 47 38 35 21 28 42 46</code></pre>
+<pre class="r"><code>mat1 &lt;- matrix(data=vec1,nrow=n_dims)
+print(mat1)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
+## [1,]    1    8   15   22   29   36   43
+## [2,]    2    9   16   23   30   37   44
+## [3,]    3   10   17   24   31   38   45
+## [4,]    4   11   18   25   32   39   46
+## [5,]    5   12   19   26   33   40   47
+## [6,]    6   13   20   27   34   41   48
+## [7,]    7   14   21   28   35   42   49</code></pre>
+<pre class="r"><code>tmat1 &lt;- t(mat1)
+print(tmat1)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
+## [1,]    1    2    3    4    5    6    7
+## [2,]    8    9   10   11   12   13   14
+## [3,]   15   16   17   18   19   20   21
+## [4,]   22   23   24   25   26   27   28
+## [5,]   29   30   31   32   33   34   35
+## [6,]   36   37   38   39   40   41   42
+## [7,]   43   44   45   46   47   48   49</code></pre>
+<pre class="r"><code>#the same as doing byrow vs bycolumn, this has &quot;flipped&quot; the matrix
+
+sum(tmat1[1,])</code></pre>
+<pre><code>## [1] 28</code></pre>
+<pre class="r"><code>mean(tmat1[1,])</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>sum(tmat1[n_dims,])</code></pre>
+<pre><code>## [1] 322</code></pre>
+<pre class="r"><code>mean(tmat1[n_dims,])</code></pre>
+<pre><code>## [1] 46</code></pre>
+<pre class="r"><code>eigen1 &lt;- eigen(tmat1)
+print(eigen1)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1]  1.825171e+02+0.000000e+00i -7.517104e+00+0.000000e+00i
+## [3] -5.906038e-15+0.000000e+00i  7.498614e-16+0.000000e+00i
+## [5] -5.245824e-17+2.931226e-16i -5.245824e-17-2.931226e-16i
+## [7] -2.103901e-16+0.000000e+00i
+## 
+## $vectors
+##                [,1]          [,2]           [,3]             [,4]
+## [1,] -0.06480021+0i  0.5941931+0i -0.73192505+0i -0.3964361348+0i
+## [2,] -0.15419968+0i  0.4057643+0i  0.48795004+0i -0.0532556739+0i
+## [3,] -0.24359915+0i  0.2173356+0i  0.34156503+0i  0.2032002452+0i
+## [4,] -0.33299862+0i  0.0289069+0i  0.19518001+0i  0.4748048614+0i
+## [5,] -0.42239809+0i -0.1595218+0i  0.04879500+0i -0.0008880844+0i
+## [6,] -0.51179756+0i -0.3479505+0i -0.09759001+0i  0.4094557819+0i
+## [7,] -0.60119703+0i -0.5363793+0i -0.24397502+0i -0.6368809954+0i
+##                          [,5]                     [,6]           [,7]
+## [1,]  0.258780338+0.10365766i  0.258780338-0.10365766i -0.17202979+0i
+## [2,] -0.005689689+0.04720817i -0.005689689-0.04720817i -0.05055448+0i
+## [3,]  0.237436834-0.10161417i  0.237436834+0.10161417i  0.09428234+0i
+## [4,] -0.461449218-0.18366538i -0.461449218+0.18366538i -0.21583527+0i
+## [5,] -0.491524651-0.03494772i -0.491524651+0.03494772i  0.87273686+0i
+## [6,] -0.106583963+0.16936144i -0.106583963-0.16936144i -0.19014614+0i
+## [7,]  0.569030349+0.00000000i  0.569030349+0.00000000i -0.33845352+0i</code></pre>
+<pre class="r"><code>typeof(eigen1$values)</code></pre>
+<pre><code>## [1] &quot;complex&quot;</code></pre>
+<pre class="r"><code>typeof(eigen1$vectors)</code></pre>
+<pre><code>## [1] &quot;complex&quot;</code></pre>
+<pre class="r"><code>#They are &quot;doubles&quot; aka numeric values with decimal precision (n_dims = 3), when re-running I found that they were complex (n_dims = 7 or 8).</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>my_matrix &lt;- matrix(data=runif(16),nrow=4)
+
+logic1 &lt;- runif(100)
+my_logical &lt;- logic1&gt;0.5
+
+my_letters &lt;- sample(letters)
+
+mylist &lt;- list(my_matrix,my_logical,my_letters)
+
+newlist &lt;- list(my_matrix[2,2],my_logical[2],my_letters[2])
+
+typeof(newlist[[1]])</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>typeof(newlist[[2]])</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>typeof(newlist[[3]])</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>newvec &lt;- c(newlist[[1]],newlist[[2]],newlist[[3]])
+typeof(newvec)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>my_unis &lt;- runif(26,min=1,max=10)
+my_letters &lt;- sample(LETTERS)
+
+myframe &lt;- data.frame(my_unis,my_letters)
+
+myframe[sample(1:26,4),1] &lt;- NA
+which(!complete.cases(myframe$my_unis))</code></pre>
+<pre><code>## [1] 14 15 17 24</code></pre>
+<pre class="r"><code>myframe &lt;- myframe[order(myframe$my_letters),]
+
+mean(myframe$my_unis,na.rm=TRUE)</code></pre>
+<pre><code>## [1] 5.119883</code></pre>
+<pre class="r"><code>print(myframe)</code></pre>
+<pre><code>##     my_unis my_letters
+## 22 2.864369          A
+## 15       NA          B
+## 12 9.910586          C
+## 5  3.620511          D
+## 26 4.747910          E
+## 17       NA          F
+## 6  8.720970          G
+## 2  1.190895          H
+## 9  3.494066          I
+## 14       NA          J
+## 25 1.809946          K
+## 1  2.475857          L
+## 4  3.219018          M
+## 13 2.632412          N
+## 18 5.450607          O
+## 20 4.075490          P
+## 7  2.265682          Q
+## 10 9.386529          R
+## 16 6.359622          S
+## 24       NA          T
+## 21 7.923264          U
+## 19 5.462978          V
+## 11 9.758603          W
+## 23 4.833714          X
+## 8  6.437930          Y
+## 3  5.996469          Z</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

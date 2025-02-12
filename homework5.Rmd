@@ -1,0 +1,77 @@
+---
+title: "homework5"
+author: "Nick Maurizi"
+date: "2025-02-12"
+output: html_document
+---
+## Homework 5
+
+1. 
+```{r}
+n_dims <- sample(3:10,1,replace=TRUE)
+
+vec1 <- seq(1:n_dims^2)
+
+sample(x=vec1)
+
+mat1 <- matrix(data=vec1,nrow=n_dims)
+print(mat1)
+
+tmat1 <- t(mat1)
+print(tmat1)
+
+#the same as doing byrow vs bycolumn, this has "flipped" the matrix
+
+sum(tmat1[1,])
+mean(tmat1[1,])
+
+sum(tmat1[n_dims,])
+mean(tmat1[n_dims,])
+
+eigen1 <- eigen(tmat1)
+print(eigen1)
+
+typeof(eigen1$values)
+typeof(eigen1$vectors)
+
+#They are "doubles" aka numeric values with decimal precision (n_dims = 3), when re-running I found that they were complex (n_dims = 7 or 8).
+```
+
+2. 
+```{r}
+my_matrix <- matrix(data=runif(16),nrow=4)
+
+logic1 <- runif(100)
+my_logical <- logic1>0.5
+
+my_letters <- sample(letters)
+
+mylist <- list(my_matrix,my_logical,my_letters)
+
+newlist <- list(my_matrix[2,2],my_logical[2],my_letters[2])
+
+typeof(newlist[[1]])
+typeof(newlist[[2]])
+typeof(newlist[[3]])
+
+newvec <- c(newlist[[1]],newlist[[2]],newlist[[3]])
+typeof(newvec)
+```
+
+3. 
+```{r}
+my_unis <- runif(26,min=1,max=10)
+my_letters <- sample(LETTERS)
+
+myframe <- data.frame(my_unis,my_letters)
+
+myframe[sample(1:26,4),1] <- NA
+which(!complete.cases(myframe$my_unis))
+
+myframe <- myframe[order(myframe$my_letters),]
+
+mean(myframe$my_unis,na.rm=TRUE)
+print(myframe)
+```
+
+
