@@ -282,46 +282,43 @@ $(document).ready(function () {
 vec1 &lt;- seq(1:n_dims^2)
 
 sample(x=vec1)</code></pre>
-<pre><code>##  [1] 11 24  5 18 20 17  2  8 16 23 13 19  4  3 22 21  7  1 25 10 12  6  9 14 15</code></pre>
+<pre><code>##  [1] 10 16  2 15  8  1 13 11  9  7 12  4  5  6 14  3</code></pre>
 <pre class="r"><code>mat1 &lt;- matrix(data=vec1,nrow=n_dims)
 print(mat1)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    1    6   11   16   21
-## [2,]    2    7   12   17   22
-## [3,]    3    8   13   18   23
-## [4,]    4    9   14   19   24
-## [5,]    5   10   15   20   25</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    5    9   13
+## [2,]    2    6   10   14
+## [3,]    3    7   11   15
+## [4,]    4    8   12   16</code></pre>
 <pre class="r"><code>tmat1 &lt;- t(mat1)
 print(tmat1)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    1    2    3    4    5
-## [2,]    6    7    8    9   10
-## [3,]   11   12   13   14   15
-## [4,]   16   17   18   19   20
-## [5,]   21   22   23   24   25</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12
+## [4,]   13   14   15   16</code></pre>
 <pre class="r"><code>#the same as doing byrow vs bycolumn, this has &quot;flipped&quot; the matrix
 
 sum(tmat1[1,])</code></pre>
-<pre><code>## [1] 15</code></pre>
+<pre><code>## [1] 10</code></pre>
 <pre class="r"><code>mean(tmat1[1,])</code></pre>
-<pre><code>## [1] 3</code></pre>
+<pre><code>## [1] 2.5</code></pre>
 <pre class="r"><code>sum(tmat1[n_dims,])</code></pre>
-<pre><code>## [1] 115</code></pre>
+<pre><code>## [1] 58</code></pre>
 <pre class="r"><code>mean(tmat1[n_dims,])</code></pre>
-<pre><code>## [1] 23</code></pre>
+<pre><code>## [1] 14.5</code></pre>
 <pre class="r"><code>eigen1 &lt;- eigen(tmat1)
 print(eigen1)</code></pre>
 <pre><code>## eigen() decomposition
 ## $values
-## [1]  6.864208e+01 -3.642081e+00 -2.303866e-15 -7.200060e-16  1.927814e-16
+## [1]  3.620937e+01 -2.209373e+00 -2.738146e-15 -5.039804e-16
 ## 
 ## $vectors
-##            [,1]        [,2]        [,3]         [,4]       [,5]
-## [1,] -0.1079750 -0.67495283 -0.30969357 -0.000832563 -0.1370971
-## [2,] -0.2527750 -0.36038970  0.76783803 -0.420258699  0.1260447
-## [3,] -0.3975750 -0.04582657 -0.55648658  0.822939221  0.4817413
-## [4,] -0.5423751  0.26873656  0.04823335 -0.381772092 -0.7932281
-## [5,] -0.6871751  0.58329969  0.05010877 -0.020075867  0.3225393</code></pre>
+##            [,1]       [,2]        [,3]        [,4]
+## [1,] -0.1511543  0.7270500 -0.34548549  0.02015351
+## [2,] -0.3492373  0.2832088  0.77743657  0.38110049
+## [3,] -0.5473203 -0.1606324 -0.51841668 -0.82266151
+## [4,] -0.7454033 -0.6044736  0.08646559  0.42140751</code></pre>
 <pre class="r"><code>typeof(eigen1$values)</code></pre>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <pre class="r"><code>typeof(eigen1$vectors)</code></pre>
@@ -360,39 +357,39 @@ myframe &lt;- data.frame(my_unis,my_letters)
 
 myframe[sample(1:26,4),1] &lt;- NA
 which(!complete.cases(myframe$my_unis))</code></pre>
-<pre><code>## [1]  5 18 21 25</code></pre>
+<pre><code>## [1]  4 13 18 23</code></pre>
 <pre class="r"><code>myframe &lt;- myframe[order(myframe$my_letters),]
 
 mean(myframe$my_unis,na.rm=TRUE)</code></pre>
-<pre><code>## [1] 5.508503</code></pre>
+<pre><code>## [1] 4.836782</code></pre>
 <pre class="r"><code>print(myframe)</code></pre>
 <pre><code>##     my_unis my_letters
-## 3  5.314257          A
-## 25       NA          B
-## 13 9.655105          C
-## 5        NA          D
-## 7  4.516785          E
-## 11 2.937064          F
-## 14 7.992971          G
-## 1  9.256576          H
-## 17 1.314986          I
-## 20 4.129205          J
-## 2  7.585263          K
-## 18       NA          L
-## 15 8.338804          M
-## 19 2.069267          N
-## 8  2.838642          O
-## 21       NA          P
-## 22 6.539970          Q
-## 24 3.351593          R
-## 12 9.235258          S
-## 9  6.026829          T
-## 23 4.225909          U
-## 10 2.570208          V
-## 16 4.861250          W
-## 6  2.221503          X
-## 26 9.909252          Y
-## 4  6.296360          Z</code></pre>
+## 5  3.939582          A
+## 15 4.762497          B
+## 20 1.208241          C
+## 6  5.683329          D
+## 18       NA          E
+## 21 3.555963          F
+## 10 5.216188          G
+## 11 5.629553          H
+## 23       NA          I
+## 13       NA          J
+## 7  3.570486          K
+## 4        NA          L
+## 24 1.534076          M
+## 1  1.394513          N
+## 17 4.495890          O
+## 22 4.170386          P
+## 16 9.927700          Q
+## 3  8.738152          R
+## 8  2.276459          S
+## 14 5.817346          T
+## 26 8.473520          U
+## 25 3.201260          V
+## 9  6.467380          W
+## 19 6.551244          X
+## 12 4.113603          Y
+## 2  5.681843          Z</code></pre>
 </div>
 
 

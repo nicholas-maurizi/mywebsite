@@ -1,0 +1,74 @@
+---
+title: "homework6"
+author: "Nick Maurizi"
+date: "2025-03-06"
+output: html_document
+---
+
+1. I chose to simulate data based on my ongoing research project.
+
+2. If the biological hypothesis were found to be true. I am investigating whether a handful of insulin binding proteins have a role in *C. elegans* associative learning ability. The data would take the form of four groups (two strains x two treatments), both following a normal distribution of indices betweein -1 and 1. The strains are *n2* (wild type) and *zig-4*. The conditions are 25mM NaCl (low salt) and 100mM NaCl (high salt).
+
+3. I used a for loop to create my data set that way the four sets of numbers would be in order for displaying data. I combined it into a data frame outside the loop because I needed some variables to remain in their current forms for example "exp" which I needed to scale according to sample size.
+
+4. I did not do a posthoc test yet only when playing with parameters of the data. Simple anova to make sure the data datas!
+```{r}
+
+exp <- c("n2high","zig4high","n2low","zig4low") #experimental labels, just as a group of four to be used later 
+for (j in 1:5) {
+  for (i in 1:4){#four total sets of data, each unique
+    if(i %% 2==1){#two must be closer to zero and two closer to one to simulate significant results
+      varname <- paste0("x_",i) #creating a unique name for each vector
+      assign(varname,rnorm(50,mean=runif(1,min=0.4,max=1),sd=runif(1,min=0.05,max=0.5)))#the data has a normal distribution and each new vector has a random mean in a desired range and a random standard deviation within a reasonable range
+      } else {
+        varname <- paste0("x_",i)
+        assign(varname,rnorm(50,mean=runif(1,min=0,max=0.6),sd=runif(1,min=0.05,max=0.5)))
+      }
+  if (i==4){ #two of the vectors (low salt treatment) have to be negative so I waited till the last loop and multiplied the vectors by -1
+    x_3 <- x_3*-1
+    x_4 <- x_4*-1
+    experiment <- rep(exp, each = 50) #scaling experimental labels to fit the amount of data
+worm_index <- c(x_1,x_2,x_3,x_4) # combining data into a single vector
+fakewormdata <- data.frame(worm_index,experiment) #data frame of whole dataset (just preference index and experimental labels)
+anova1 <- aov(fakewormdata$worm_index~ fakewormdata$experiment)
+
+sum <- summary(anova1) #quick initial anova before adjusting data parameters
+cat("anova number",j,"\n")
+print(sum) 
+cat("\n\n\n")
+  }
+  }
+}
+
+```
+
+*note: without the post hoc test all come back significant because half the data is below 0 and half is above. In the post hoc I will compare the groups that are on the same side of 0 with each other
+
+Below I just assembled the data created above into a data frame
+
+```{r}
+exp <- c("n2high","zig4high","n2low","zig4low")
+experiment <- rep(exp, each = 50)
+worm_index <- c(x_1,x_2,x_3,x_4)
+fakewormdata <- data.frame(worm_index,experiment)
+```
+
+5/6. I used a for loop to adjust the sample size to explore how significance would change with sample size. I did this by subsetting the data based on the counter value and reassembling the data frame with the subsetted data. Then I ran an anova and a Tukey post-hoc test to extract the important comparisons from the statistical analysis. 
+
+```{r}
+for (j in 2:5) {
+  y_1 <- x_1[1:(j*10)] #resampling the data
+  y_2 <- x_2[1:(j*10)]
+  y_3 <- x_3[1:(j*10)]
+  y_4 <- x_4[1:(j*10)]
+  index <- c(y_1,y_2,y_3,y_4) #recombining the data
+  exp <- rep(exp,each=(j*10))
+  data <- data.frame(index,exp) #turning it into a data frame
+  anova <- aov(data$index ~ data$exp) 
+  turkey <- TukeyHSD(anova) #post hoc test 
+  high <- turkey$data[2,4] #these two lines isolate the desired parts of the post hoc test, one comparing the high salt conditioned groups to each other and one comparing the low salt conditioned ones. 
+  low <- turkey$data[5,4]
+  cat("When n =",j*40,"and each strain x treatment has a random standard deviation between 0.05 and 0.5: \n Analysis: \n zig-4 (mean =",mean(y_2),") x wild type (mean =",mean(y_1),"), with high salt conditioning: \n p =",high,"\n Analysis: \n zig-4 (mean =",mean(y_4),") x wild type (mean =",mean(y_3),"), with low salt conditioning: \n p =",low,"\n\n\n")
+}
+
+```
