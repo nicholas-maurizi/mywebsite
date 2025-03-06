@@ -11,14 +11,14 @@
 
 <meta name="author" content="Nick Maurizi" />
 
-<meta name="date" content="2025-01-22" />
+<meta name="date" content="2025-02-05" />
 
-<title>Homework</title>
+<title>homework4</title>
 
 <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -265,23 +265,101 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Homework</h1>
+<h1 class="title toc-ignore">homework4</h1>
 <h4 class="author">Nick Maurizi</h4>
-<h4 class="date">2025-01-22</h4>
+<h4 class="date">2025-02-05</h4>
 
 </div>
 
 
-<div id="here-are-my-homework-assignments" class="section level3">
-<h3>Here are my homework assignments:</h3>
-<ul>
-<li><a href="homework1.html">homework 1</a></li>
-<li><a href="homework2.html">homework 2</a></li>
-<li><a href="homework3.html">homework 3</a></li>
-<li><a href="homework4.html">homework 4</a></li>
-<li><a href="homework5.html">homework 5</a></li>
-</ul>
-</div>
+<ol style="list-style-type: decimal">
+<li>I began by assigning the values to their variables, then evaluating
+each expression and assigning to z, and displaying z</li>
+</ol>
+<pre class="r"><code>x &lt;- 1.1
+a &lt;- 2.2
+b &lt;- 3.3
+
+#Expressions
+z &lt;- x^(a^b)
+print(z)</code></pre>
+<pre><code>## [1] 3.61714</code></pre>
+<pre class="r"><code>z &lt;- (x^a)^b
+print(z)</code></pre>
+<pre><code>## [1] 1.997611</code></pre>
+<pre class="r"><code>z &lt;- (3*x^3+2*x^2+1)
+print(z)</code></pre>
+<pre><code>## [1] 7.413</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>vector_a &lt;- c(1:8,7:1)
+print(vector_a)</code></pre>
+<pre><code>##  [1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</code></pre>
+<pre class="r"><code>temp_vec &lt;- c(1:5)
+vector_b &lt;- rep(temp_vec,times=temp_vec)
+print(vector_b)</code></pre>
+<pre><code>##  [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></pre>
+<pre class="r"><code>temp_vec2 &lt;- c(5:1)
+vector_c &lt;- rep(temp_vec2,times=temp_vec)
+print(vector_c)</code></pre>
+<pre><code>##  [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>I assigned the variables their values by picking them out of the
+vector I created. I found r using the Pythagorean theorem and then used
+inverse sin to find theta.</li>
+</ol>
+<pre class="r"><code>vector &lt;- runif(2)
+
+x &lt;- vector[1]
+print(x)</code></pre>
+<pre><code>## [1] 0.1794057</code></pre>
+<pre class="r"><code>y &lt;- vector[2]
+print(y)</code></pre>
+<pre><code>## [1] 0.3037999</code></pre>
+<pre class="r"><code>r &lt;- (x^2 + y^2)^(1/2) 
+print(r)</code></pre>
+<pre><code>## [1] 0.3528183</code></pre>
+<pre class="r"><code>theta &lt;- asin(y/r)
+print(theta)</code></pre>
+<pre><code>## [1] 1.037363</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Noahs arc</li>
+</ol>
+<pre class="r"><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;) 
+print(queue)</code></pre>
+<pre><code>## [1] &quot;sheep&quot; &quot;fox&quot;   &quot;owl&quot;   &quot;ant&quot;</code></pre>
+<pre class="r"><code>queue &lt;- c(queue,&quot;serpent&quot;)
+print(queue)</code></pre>
+<pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+<pre class="r"><code>queue &lt;- queue[2:5]
+print(queue)</code></pre>
+<pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+<pre class="r"><code>queue &lt;- c(&quot;donkey&quot;,queue)
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+<pre class="r"><code>queue &lt;- queue[1:4]
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;ant&quot;</code></pre>
+<pre class="r"><code>queue &lt;- queue[c(1,2,4)]
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;ant&quot;</code></pre>
+<pre class="r"><code>queue &lt;- c(queue[1:2],&quot;aphid&quot;,queue[3])
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;aphid&quot;  &quot;ant&quot;</code></pre>
+<pre class="r"><code>which(queue==&quot;aphid&quot;)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>I used the subset function here to include all numbers that cannot
+be divided evenly (defined as having a remainder not equal to 0) by 2,
+3, or 7.</li>
+</ol>
+<pre class="r"><code>math_vector &lt;- c(1:100)
+
+math_final &lt;- subset(math_vector, (math_vector%%2 != 0) &amp; (math_vector%%3 !=0) &amp; (math_vector%%7 != 0))
+print(math_final)</code></pre>
+<pre><code>##  [1]  1  5 11 13 17 19 23 25 29 31 37 41 43 47 53 55 59 61 65 67 71 73 79 83 85
+## [26] 89 95 97</code></pre>
 
 
 

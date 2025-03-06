@@ -1,0 +1,114 @@
+---
+title: "homework4"
+author: "Nick Maurizi"
+date: "2025-02-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. I began by assigning the values to their variables, then evaluating each expression and assigning to z, and displaying z
+
+```{r}
+
+x <- 1.1
+a <- 2.2
+b <- 3.3
+
+#Expressions
+z <- x^(a^b)
+print(z)
+
+z <- (x^a)^b
+print(z)
+
+z <- (3*x^3+2*x^2+1)
+print(z)
+
+
+```
+
+2. 
+```{r}
+vector_a <- c(1:8,7:1)
+print(vector_a)
+
+temp_vec <- c(1:5)
+vector_b <- rep(temp_vec,times=temp_vec)
+print(vector_b)
+
+temp_vec2 <- c(5:1)
+vector_c <- rep(temp_vec2,times=temp_vec)
+print(vector_c)
+
+
+```
+
+3. I assigned the variables their values by picking them out of the vector I created. I found r using the Pythagorean theorem and then used inverse sin to find theta. 
+```{r}
+vector <- runif(2)
+
+x <- vector[1]
+print(x)
+y <- vector[2]
+print(y)
+
+r <- (x^2 + y^2)^(1/2) 
+print(r)
+
+theta <- asin(y/r)
+print(theta)
+
+
+
+```
+
+4. Noahs arc
+```{r}
+queue <- c("sheep", "fox", "owl", "ant") 
+print(queue)
+queue <- c(queue,"serpent")
+print(queue)
+queue <- queue[2:5]
+print(queue)
+queue <- c("donkey",queue)
+print(queue)
+queue <- queue[1:4]
+print(queue)
+queue <- queue[c(1,2,4)]
+print(queue)
+queue <- c(queue[1:2],"aphid",queue[3])
+print(queue)
+which(queue=="aphid")
+
+
+```
+
+5. I used the subset function here to include all numbers that cannot be divided evenly (defined as having a remainder not equal to 0) by 2, 3, or 7.
+```{r}
+
+math_vector <- c(1:100)
+
+math_final <- subset(math_vector, (math_vector%%2 != 0) & (math_vector%%3 !=0) & (math_vector%%7 != 0))
+print(math_final)
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
