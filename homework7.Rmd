@@ -1,0 +1,65 @@
+---
+title: "homework7"
+author: "Nick Maurizi"
+date: "2025-03-06"
+output: html_document
+---
+
+1. Getting packages and data. iris is a data frame with 150 rows and five variables (columns).
+```{r}
+library(tidyverse)
+data(iris)
+```
+
+2. Creating iris 1 by filtering for only rows that meet the desired criteria.
+```{r}
+iris1 <- filter(iris, Species%in% c("virginica","versicolor"),Sepal.Width > 2.5,Sepal.Length>6) 
+```
+
+3. Creating iris 2 that only includes desired columns using the select function
+```{r}
+iris2 <- select(iris1, Species, Sepal.Length, Sepal.Width)
+```
+
+4. Orders the data by descending sepal length.
+```{r}
+iris3 <- arrange(iris2, by=desc(Sepal.Length))
+```
+
+5. Adding a sepal area (L x W) to the previous data frame. Uses mutate to provide the formula and create the new column simultaneously.
+```{r}
+iris4 <- mutate(iris3, Sepal.Area=Sepal.Length*Sepal.Width)
+```
+
+6. Creates a small data frame that calculates averages.
+```{r}
+iris5 <- summarize(iris4, average.sepal.length= mean(Sepal.Length), average.sepal.width=mean(Sepal.Width),sample.size=n())
+print(iris5)
+```
+
+7. Now we do averages by species.
+```{r}
+iris6 <- group_by(iris4, Species)
+iris6 <- summarize(iris6, average.sepal.length= mean(Sepal.Length), average.sepal.width=mean(Sepal.Width),sample.size=n())
+print(iris6)
+```
+
+8. This chunk shows how using pipe statements can speed things up.
+```{r}
+irisFinal <- iris%>% 
+  filter(Species%in% c("virginica","versicolor"),Sepal.Width > 2.5,Sepal.Length>6)%>% 
+  select(Species, Sepal.Length, Sepal.Width)%>%
+  arrange(by=desc(Sepal.Length))%>%
+  mutate(Sepal.Area=Sepal.Length*Sepal.Width)%>%
+  group_by(Species)%>%
+  summarize(average.sepal.length= mean(Sepal.Length), average.sepal.width=mean(Sepal.Width),sample.size=n())
+
+irisFinal==iris6  #checking my work
+```
+
+9. Formating the original iris data frame "the long way" using pivot functions.
+```{r}
+irislonger <- iris%>%
+  select(Species,Sepal.Length,Sepal.Width,Petal.Length,Petal.Width)%>%
+  pivot_longer(cols = 2:5, names_to = "Measure", values_to = "Value")
+```
