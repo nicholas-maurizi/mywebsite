@@ -1,0 +1,94 @@
+---
+title: "homework8"
+author: "Nick Maurizi"
+date: "2025-03-19"
+output: html_document
+---
+
+1 & 2. Reading in my data and running sample code - I made annotations in an R document when doing the work for the homework. I used a study on protein density in CSF of dementia patients. The data I used for visualization is the relative density of human albumin. There were many proteins recorded in the data. 
+```{r setup, results="hide"}
+z <- read.table("Proteo.csv",header=TRUE,sep=",")
+str(z)
+summary(z)
+```
+
+```{r}
+library(ggplot2) 
+library(MASS)
+
+#P02768
+
+p1 <- ggplot(data=z, aes(x=P02768, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2) 
+print(p1)
+
+p1 <-  p1 +  geom_density(linetype="dotted",size=0.75)
+print(p1)
+
+normPars <- fitdistr(z$P02768,"normal")
+print(normPars)
+str(normPars)
+normPars$estimate["mean"] # note structure of getting a named attribute
+
+meanML <- normPars$estimate["mean"]
+sdML <- normPars$estimate["sd"]
+
+xval <- seq(0,max(z$P02768),len=length(z$P02768))
+
+stat <- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour="red", n = length(z$P02768), args = list(mean = meanML, sd = sdML))
+p1 + stat
+
+expoPars <- fitdistr(z$P02768,"exponential")
+rateML <- expoPars$estimate["rate"]
+
+stat2 <- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour="blue", n = length(z$P02768), args = list(rate=rateML))
+p1 + stat + stat2
+
+stat3 <- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour="darkgreen", n = length(z$P02768), args = list(min=min(z$P02768), max=max(z$P02768)))
+p1 + stat + stat2 + stat3
+
+gammaPars <- fitdistr(z$P02768,"gamma")
+shapeML <- gammaPars$estimate["shape"]
+rateML <- gammaPars$estimate["rate"]
+###########
+stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown", n = length(z$P02768), args = list(shape=shapeML, rate=rateML))
+p1 + stat + stat2 + stat3 + stat4
+############
+pSpecial <- ggplot(data=z, aes(x=P02768/(max(P02768 + 0.1)), y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2) + 
+  xlim(c(0,1)) +
+  geom_density(size=0.75,linetype="dotted")
+
+betaPars <- fitdistr(x=z$P02768/max(z$P02768 + 0.1),start=list(shape1=1,shape2=2),"beta")
+shape1ML <- betaPars$estimate["shape1"]
+shape2ML <- betaPars$estimate["shape2"]
+
+statSpecial <- stat_function(aes(x = xval, y = ..y..), fun = dbeta, colour="orchid", n = length(z$P02768), args = list(shape1=shape1ML,shape2=shape2ML))
+pSpecial + statSpecial
+```
+
+3. The best fitting curve upon running my data was the damma distribution. It matched around half the density dots almost perfectly with the main difference being the top of the hump not matching well because of natural variation I would guess. 
+
+4. Creating new data from the parameters of the distribution. 
+```{r}
+newgam <- data.frame(rgamma(n=500,shape=9.66271,rate=10.47398))
+names(newgam) <- "protein"
+
+p2 <- ggplot(data=newgam, aes(x=protein, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2) 
+print(p2)
+
+p2 <-  p2 +  geom_density(linetype="dotted",size=0.75)
+print(p2)
+
+library(gridExtra) #i remember using this in ecology
+grid.arrange(p1,p2, ncol=1)
+```
+
+
+
+
+
+
+
+
